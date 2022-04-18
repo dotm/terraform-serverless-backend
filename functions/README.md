@@ -1,0 +1,1 @@
+All handler should be put inside index.ts
