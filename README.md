@@ -20,5 +20,4 @@ Learn](https://learn.hashicorp.com/tutorials/terraform/lambda-api-gateway?in=ter
 
 ## Testing
 
-- aws s3 ls $(terraform output -raw lambda_bucket_name)
 - curl "$(terraform output -raw base_url)/hello?Name=Terraform"

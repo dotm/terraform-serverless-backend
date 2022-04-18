@@ -22,7 +22,7 @@ provider "aws" {
 data "archive_file" "lambda_hello_world" {
   type = "zip"
 
-  source_file  = "${path.module}/dist/functions/hello-world"
+  source_file = "${path.module}/dist/functions/hello-world"
   output_path = "${path.module}/dist/functions/hello-world.zip"
 }
 
@@ -31,6 +31,7 @@ resource "aws_lambda_function" "hello_world" {
   filename      = data.archive_file.lambda_hello_world.output_path
   runtime       = "go1.x"
   handler       = "hello-world"
+  publish       = true
 
   source_code_hash = data.archive_file.lambda_hello_world.output_base64sha256
 
