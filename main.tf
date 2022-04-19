@@ -8,6 +8,14 @@ terraform {
       source  = "hashicorp/archive"
       version = "~> 2.2.0"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.1.2"
+    }
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.1.1"
+    }
   }
 
   required_version = "~> 1.0"
@@ -17,10 +25,23 @@ provider "aws" {
   region = var.aws_region
 }
 
+resource "random_uuid" "value" {
+}
+resource "null_resource" "go_build_functions_output" {
+  triggers = {
+    always_run = random_uuid.value.result
+  }
+
+  provisioner "local-exec" {
+    command = "go run build_functions.go"
+  }
+}
+
 //Lambda
 
 data "archive_file" "lambda_hello_world" {
   type = "zip"
+  depends_on = [null_resource.go_build_functions_output]
 
   source_file = "${path.module}/dist/functions/hello-world"
   output_path = "${path.module}/dist/functions/hello-world.zip"

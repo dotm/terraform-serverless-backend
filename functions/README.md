@@ -1,1 +1,1 @@
-All handler should be put inside index.ts
+All handler should be put inside main.go

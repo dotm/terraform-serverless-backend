@@ -8,8 +8,8 @@ Learn](https://learn.hashicorp.com/tutorials/terraform/lambda-api-gateway?in=ter
 
 ## TODO
 
-- add build and deploy script
 - add CRUD to dynamodb
+- refactor main.tf
 - add stages (prod, staging, qa) (don't forget to change api gateway tf config)
 - add tests
 

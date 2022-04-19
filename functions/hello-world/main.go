@@ -21,7 +21,7 @@ func greet(name string) Greeting {
 		name = "World"
 	}
 	return Greeting{
-		Message: utils.AddExclamation(fmt.Sprintf("Hello, %s!", name)),
+		Message: utils.AddExclamation(fmt.Sprintf("Hello, %s", name)),
 	}
 }
 
